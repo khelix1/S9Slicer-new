@@ -1,0 +1,28 @@
+
+# Build and binary output
+build/
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.out
+
+# Qt/CLion/VSCode
+*.user
+*.pro.user
+*.qmake.stash
+CMakeLists.txt.user
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Backup
+*~
