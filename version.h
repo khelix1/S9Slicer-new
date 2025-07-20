@@ -1,0 +1,1 @@
+#define S9SLICER_VERSION "0.7.8.1"
