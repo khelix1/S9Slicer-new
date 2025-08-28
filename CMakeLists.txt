@@ -1,30 +1,13 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(S9Slicer)
-
-# Set C++17 standard
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Include directories
-include_directories(
-    src
-    src/engine
-    external/clipper
-    external/arcwelder
-)
-
-# Source files
-file(GLOB_RECURSE ENGINE_SOURCES src/engine/*.cpp)
-file(GLOB_RECURSE MAIN_SOURCES src/*.cpp)
-file(GLOB_RECURSE CLIPPER_SOURCES external/clipper/*.cpp)
-file(GLOB_RECURSE ARCWELDER_SOURCES external/arcwelder/*.cpp)
-
-add_executable(s9slicer
-    ${ENGINE_SOURCES}
-    ${MAIN_SOURCES}
-    ${CLIPPER_SOURCES}
-    ${ARCWELDER_SOURCES}
-)
-
-# Optional: Install rule
-install(TARGETS s9slicer DESTINATION bin)
+option(BUILD_GUI "Build the Qt GUI frontend" ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+find_package(Qt6 REQUIRED COMPONENTS Widgets OpenGLWidgets)
+add_library(s9slicer_core)
+add_executable(s9slicer)
+if(BUILD_GUI)
+    add_subdirectory(gui)
+endif()
